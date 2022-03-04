@@ -5,7 +5,6 @@ import './FishTable.css'
 
 
 export default function FishTable({ fish }) {
-  console.log(fish, "fish page")
   return (
     <Table.Row key={fish.id} id={fish.id}>
       <Table.Cell><Icon name='check' /></Table.Cell>
@@ -15,7 +14,7 @@ export default function FishTable({ fish }) {
       <Table.Cell>{fish.fish_name}</Table.Cell>
       <Table.Cell>{fish.price}</Table.Cell>
       <Table.Cell>{fish.shadow_size}</Table.Cell>
-      <Table.Cell>{fish.time}</Table.Cell>
+      <Table.Cell collapsing>{fish.time}</Table.Cell>
     </Table.Row>
   )
 

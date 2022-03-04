@@ -5,7 +5,7 @@ import FishTable from '../../components/fish/fishtable'
 import Loading from '../../components/Loader/Loader'
 import fishData from '../../Data/fishData'
 
-export default function Fish({ }) {
+export default function Fish({ currentHemisphere }) {
   const [currentFish, setCurrentFish] = useState();
   const [loading, setLoading] = useState(true);
   async function getData() {
@@ -16,7 +16,7 @@ export default function Fish({ }) {
     console.log(currentMonth, "month")
     let filterFish = await fishData.fishData.filter(function (i) {
       return i.time_available[currentHour] === true &&
-        i.hemisphere.north[currentMonth] === true;
+        i.hemisphere[currentHemisphere][currentMonth] === true;
     });
     console.log(filterFish, "filteredfish")
     setCurrentFish(filterFish);
@@ -27,7 +27,8 @@ export default function Fish({ }) {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [currentHemisphere]);
+
   if (loading) {
     return (
       <>

@@ -9,13 +9,13 @@ import fishData from '../../Data/fishData'
 import Fish from '../Fish/Fish'
 import Loader from '../../components/Loader/Loader'
 import { Container } from "semantic-ui-react";
+import Nav from '../../components/Nav/Nav'
 function App() {
   const [user, setUser] = useState(userService.getUser());
   const [currentBugs, setCurrentBugs] = useState();
   const [currentFish, setCurrentFish] = useState();
-  const [currentHemisphere, setCurrentHemisphere] = useState(true);
-  // true = north false = south
-
+  const [currentHemisphere, setCurrentHemisphere] = useState('north');
+  console.log(currentHemisphere);
 
   function handleSignUpOrLogin() {
     setUser(userService.getUser()); // getting the user from localstorage decoding the jwt
@@ -29,10 +29,11 @@ function App() {
   if (user) {
 
     return (
-
+      <>
+        <Nav handleLogout={handleLogout} setCurrentHemisphere={setCurrentHemisphere} />
         <Routes>
           <Route path="/" element={<h1>This is Home Page!</h1>} />
-          <Route path="/fish" element={<Fish />} />
+          <Route path="/fish" element={<Fish currentHemisphere={currentHemisphere} />} />
           <Route
             path="/login"
             element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
@@ -43,7 +44,7 @@ function App() {
           />
           <Route path="/logout" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
         </Routes>
-
+      </>
     );
   }
 
