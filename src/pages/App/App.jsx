@@ -7,7 +7,8 @@ import userService from "../../utils/userService";
 import bugData from '../../Data/bugData'
 import fishData from '../../Data/fishData'
 import Fish from '../Fish/Fish'
-
+import Loader from '../../components/Loader/Loader'
+import { Container } from "semantic-ui-react";
 function App() {
   const [user, setUser] = useState(userService.getUser());
   const [currentBugs, setCurrentBugs] = useState();
@@ -15,19 +16,7 @@ function App() {
   const [currentHemisphere, setCurrentHemisphere] = useState(true);
   // true = north false = south
 
-  function getData() {
-    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const today = new Date();
-    const currentHour = `h_${today.getHours()}`;
-    const currentMonth = months[today.getMonth()];
-    console.log(currentMonth, "month")
-    let filterFish = fishData.fishData.filter(function (i) {
-      return i.time_available[currentHour] === true &&
-        i.hemisphere.north[currentMonth] === true;
-    });
-    console.log(filterFish, "filteredfish")
-    setCurrentFish(filterFish);
-  }
+
   function handleSignUpOrLogin() {
     setUser(userService.getUser()); // getting the user from localstorage decoding the jwt
   }
@@ -37,26 +26,24 @@ function App() {
     setUser(null);
   }
 
-  useEffect(() => {
-    getData();
-  }, []);
   if (user) {
-    console.log(bugData.bugList[0], "bugdata")
-    console.log(fishData.fishData[0], "fishData")
+
     return (
-      <Routes>
-        <Route path="/" element={<h1>This is Home Page!</h1>} />
-        <Route path="/fish" element={<Fish currentFish={currentFish} />} />
-        <Route
-          path="/login"
-          element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-        />
-        <Route
-          path="/signup"
-          element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-        />
-        <Route path="/logout" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
-      </Routes>
+
+        <Routes>
+          <Route path="/" element={<h1>This is Home Page!</h1>} />
+          <Route path="/fish" element={<Fish />} />
+          <Route
+            path="/login"
+            element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+          />
+          <Route
+            path="/signup"
+            element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+          />
+          <Route path="/logout" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
+        </Routes>
+
     );
   }
 
