@@ -446,6 +446,8 @@ const BugData = [{
       "h_23": true
     }
   },
+
+  //now
   {
     "id": 26,
     "bug_name": "Brown Cicada",

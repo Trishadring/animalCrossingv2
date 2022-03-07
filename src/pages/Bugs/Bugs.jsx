@@ -48,7 +48,7 @@ export default function Bug({ currentHemisphere }) {
             <Table.HeaderCell>Name</Table.HeaderCell>
             <Table.HeaderCell className="mobile hidden">Price</Table.HeaderCell>
             <Table.HeaderCell>Location</Table.HeaderCell>
-            <Table.HeaderCell className="mobile hidden">Avaliable</Table.HeaderCell>
+            <Table.HeaderCell className="mobile hidden">Available</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
