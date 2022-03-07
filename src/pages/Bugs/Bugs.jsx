@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from "react";
 
 import { Table, Container } from "semantic-ui-react";
-import FishTable from '../../components/fish/fishtable'
+import BugTable from '../../components/BugTable/BugTable'
 import Loading from '../../components/Loader/Loader'
-import fishData from '../../Data/fishData'
+import BugData from '../../Data/bugData'
 
-export default function Fish({ currentHemisphere }) {
-  const [currentFish, setCurrentFish] = useState();
+export default function Bug({ currentHemisphere }) {
+  console.log(BugData, "data")
+  const [currentBug, setCurrentBug] = useState();
   const [loading, setLoading] = useState(true);
   async function getData() {
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const today = new Date();
     const currentHour = `h_${today.getHours()}`;
+    console.log(currentHour)
     const currentMonth = months[today.getMonth()];
     console.log(currentMonth, "month")
-    let filterFish = await fishData.filter(function (i) {
+    let filterBug = await BugData.filter(function (i) {
       return i.time_available[currentHour] === true &&
         i.hemisphere[currentHemisphere][currentMonth] === true;
     });
-    console.log(filterFish, "filteredfish")
-    setCurrentFish(filterFish);
+    console.log(filterBug, "filteredbug")
+    setCurrentBug(filterBug);
     setLoading(() => false);
   }
-  console.log(currentFish, "fish page")
-  // const allFish = currentFish.map((m, i) => <FishTable key={m.id} {...m} />)
-  function addCaught() {
+  console.log(currentBug, "bug page")
+  // const allBug = currentBug.map((m, i) => <BugTable key={m.id} {...m} />)
 
-  }
   useEffect(() => {
     getData();
   }, [currentHemisphere]);
@@ -47,14 +47,14 @@ export default function Fish({ currentHemisphere }) {
             <Table.HeaderCell></Table.HeaderCell>
             <Table.HeaderCell>Name</Table.HeaderCell>
             <Table.HeaderCell className="mobile hidden">Price</Table.HeaderCell>
-            <Table.HeaderCell className="mobile hidden">Shadow Size</Table.HeaderCell>
+            <Table.HeaderCell>Location</Table.HeaderCell>
             <Table.HeaderCell className="mobile hidden">Avaliable</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {currentFish.map((fish) => {
+          {currentBug.map((bug) => {
             return (
-              <FishTable fish={fish} addCaught={addCaught} />
+              <BugTable bug={bug} />
             );
           })}
         </Table.Body>

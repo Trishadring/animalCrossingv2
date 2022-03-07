@@ -4,9 +4,8 @@ import "./App.css";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import userService from "../../utils/userService";
-import bugData from '../../Data/bugData'
-import fishData from '../../Data/fishData'
 import Fish from '../Fish/Fish'
+import Bugs from '../Bugs/Bugs'
 import Loader from '../../components/Loader/Loader'
 import { Container } from "semantic-ui-react";
 import Nav from '../../components/Nav/Nav'
@@ -34,6 +33,7 @@ function App() {
         <Routes>
           <Route path="/" element={<h1>This is Home Page!</h1>} />
           <Route path="/fish" element={<Fish currentHemisphere={currentHemisphere} />} />
+          <Route path="/bugs" element={<Bugs currentHemisphere={currentHemisphere} />} />
           <Route
             path="/login"
             element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}

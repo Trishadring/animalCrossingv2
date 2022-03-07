@@ -9,7 +9,7 @@ function Nav({ handleLogout, setCurrentHemisphere }) {
     console.log(hem, "im clicking");
   }
   return (
-    <Menu >
+    <Menu stackable>
       <Menu.Item as='a'>Animal Crossing</Menu.Item>
       <Menu.Item link><Link to="/fish">Fish</Link></Menu.Item>
       <Menu.Item link><Link to="/bugs">Bugs</Link></Menu.Item>
