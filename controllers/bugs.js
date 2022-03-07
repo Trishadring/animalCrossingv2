@@ -17,9 +17,6 @@ module.exports = {
 
 async function index(req, res) {
   try {
-    // this populates the user when you find the bugs
-    // so you'll have access to the users information
-    // when you fetch teh bugs
     const bugs = await Bugs.find({}).exec();
     res.status(200).json({
       bugs: bugs

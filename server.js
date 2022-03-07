@@ -24,6 +24,8 @@ app.use(require('./config/auth'));
 // api routes must be before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/fish', require('./routes/api/fish'));
+app.use('/api/bugs', require('./routes/api/bugs'));
+app.use('/api', require('./routes/api/caught'));
 
 // "catch all" route
 app.get('/*', function (req, res) {

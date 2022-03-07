@@ -4,6 +4,7 @@ import { Table, Container } from "semantic-ui-react";
 import BugTable from '../../components/BugTable/BugTable'
 import Loading from '../../components/Loader/Loader'
 import BugData from '../../Data/bugData'
+import * as bugsAPI from "../../utils/bugsAPI";
 
 export default function Bug({ currentHemisphere }) {
   console.log(BugData, "data")
@@ -16,7 +17,9 @@ export default function Bug({ currentHemisphere }) {
     console.log(currentHour)
     const currentMonth = months[today.getMonth()];
     console.log(currentMonth, "month")
-    let filterBug = await BugData.filter(function (i) {
+    const data = await bugsAPI.getAll();
+    console.log(data, "dets")
+    let filterBug = await data.bugs.filter(function (i) {
       return i.time_available[currentHour] === true &&
         i.hemisphere[currentHemisphere][currentMonth] === true;
     });

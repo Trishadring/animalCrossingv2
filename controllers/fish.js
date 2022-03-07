@@ -18,12 +18,7 @@ module.exports = {
 
 async function index(req, res) {
   try {
-    // this populates the user when you find the fish
-    // so you'll have access to the users information
-    // when you fetch teh fish
     const fish = await Fish.find({});
-    // console.log(res.fish, 'fish')
-    // console.log(res.json, 'json')
     res.status(200).json({
       fish: fish
     });

@@ -12,7 +12,7 @@ const caughtSchema = mongoose.Schema({
 const bugsSchema = new mongoose.Schema({
   id: Number,
   bug_name: String,
-  price: Number,
+  price: String,
   img: String,
   location: String,
   hemisphere: {
